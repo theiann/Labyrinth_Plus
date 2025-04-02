@@ -28,6 +28,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 		PlayLayer::setupHasCompleted();
 		PlayLayer* pl = playlayer();
 		if ((pl->m_level->m_levelID == LEVEL_ID) && Mod::get()->hasSavedValue("souls") == true) {
+			pl->m_effectManager->updateCountForItem(233, 1);
+			pl->updateCounters(233, 1);
+
 			//Souls
 			pl->m_effectManager->updateCountForItem(64, Mod::get()->getSavedValue("souls", 0));
 			pl->updateCounters(64, Mod::get()->getSavedValue("souls", 0));
