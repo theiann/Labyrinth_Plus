@@ -38,6 +38,30 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Has gotten a soul before
 			pl->m_effectManager->updateCountForItem(65, Mod::get()->getSavedValue("has_gotten_soul", 0));
 			pl->updateCounters(65, Mod::get()->getSavedValue("has_gotten_soul", 0));
+
+			//Language
+			pl->m_effectManager->updateCountForItem(58, Mod::get()->getSavedValue("language", 0));
+			pl->updateCounters(58, Mod::get()->getSavedValue("language", 0));
+
+			//Idle Lookdown
+			pl->m_effectManager->updateCountForItem(99, Mod::get()->getSavedValue("idle_lookdown", 0));
+			pl->updateCounters(99, Mod::get()->getSavedValue("idle_lookdown", 0));
+
+			//Bounce Staff Upgrades
+			pl->m_effectManager->updateCountForItem(113, Mod::get()->getSavedValue("upgrade1", 0));
+			pl->updateCounters(113, Mod::get()->getSavedValue("upgrade1", 0));
+
+			//Teleporter Upgrades
+			pl->m_effectManager->updateCountForItem(114, Mod::get()->getSavedValue("upgrade2", 0));
+			pl->updateCounters(114, Mod::get()->getSavedValue("upgrade2", 0));
+
+			//Jetpack Upgrades
+			pl->m_effectManager->updateCountForItem(115, Mod::get()->getSavedValue("upgrade3", 0));
+			pl->updateCounters(115, Mod::get()->getSavedValue("upgrade3", 0));
+
+			//Ice Boots Upgrades
+			pl->m_effectManager->updateCountForItem(116, Mod::get()->getSavedValue("upgrade4", 0));
+			pl->updateCounters(116, Mod::get()->getSavedValue("upgrade4", 0));
 		}
 	}
 
@@ -50,6 +74,24 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			//Has gotten a soul before
 			Mod::get()->setSavedValue<int>("has_gotten_soul", pl->m_effectManager->countForItem(65));
+
+			//Language
+			Mod::get()->setSavedValue<int>("language", pl->m_effectManager->countForItem(58));
+
+			//Idle Lookdown
+			Mod::get()->setSavedValue<int>("idle_lookdown", pl->m_effectManager->countForItem(99));
+
+			//Bounce Staff Upgrades
+			Mod::get()->setSavedValue<int>("upgrade1", pl->m_effectManager->countForItem(113));
+
+			//Teleporter Upgrades
+			Mod::get()->setSavedValue<int>("upgrade2", pl->m_effectManager->countForItem(114));
+
+			//Jetpack Upgrades
+			Mod::get()->setSavedValue<int>("upgrade3", pl->m_effectManager->countForItem(115));
+
+			//Ice Boots Upgrades
+			Mod::get()->setSavedValue<int>("upgrade4", pl->m_effectManager->countForItem(116));
 		}
 	}
 };

@@ -10,5 +10,11 @@
 	"name": "Labyrinth+",
 	"version": "v1.0.0",
 	"developer": "tricipital",
-	"description": "Quality of life mod for the level Labyrinth."
+	"description": "Quality of life mod for the level Labyrinth.",
+	"repository": "https://github.com/theiann/Labyrinth_Plus",
+	"tags": [
+		"gameplay",
+		"enhancement",
+		"offline",
+		"utility"
 }
