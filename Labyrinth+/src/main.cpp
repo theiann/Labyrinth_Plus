@@ -43,8 +43,8 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			pl->updateCounters(58, Mod::get()->getSavedValue("language", 0));
 
 			//Idle Lookdown
-			pl->m_effectManager->updateCountForItem(99, Mod::get()->getSavedValue("idle_lookdown", 0));
-			pl->updateCounters(99, Mod::get()->getSavedValue("idle_lookdown", 0));
+			pl->m_effectManager->updateCountForItem(99, Mod::get()->getSavedValue("idle_lookdown", 2));
+			pl->updateCounters(99, Mod::get()->getSavedValue("idle_lookdown", 2));
 
 			//Bounce Staff Upgrades
 			pl->m_effectManager->updateCountForItem(113, Mod::get()->getSavedValue("upgrade1", 0));
