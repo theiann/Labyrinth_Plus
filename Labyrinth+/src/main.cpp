@@ -16,9 +16,8 @@ inline auto playlayer() { return GameManager::sharedState()->m_playLayer; }
 using namespace geode::prelude;
 
 
-
-bool hasSavedData;
-const int LEVEL_ID = 116808890;
+const std::string LEVEL_CREATOR = "tricipital";
+const std::string LEVEL_NAME = "Labyrinth";
 
 
 #include <Geode/binding/GJBaseGameLayer.hpp>
@@ -27,7 +26,7 @@ class $modify(MyPlayerLayer, PlayLayer) {
 	void setupHasCompleted(){
 		PlayLayer::setupHasCompleted();
 		PlayLayer* pl = playlayer();
-		if ((pl->m_level->m_levelID == LEVEL_ID) && Mod::get()->hasSavedValue("souls") == true) {
+		if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true)) {
 			pl->m_effectManager->updateCountForItem(233, 1);
 			pl->updateCounters(233, 1);
 
@@ -62,13 +61,33 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Ice Boots Upgrades
 			pl->m_effectManager->updateCountForItem(116, Mod::get()->getSavedValue("upgrade4", 0));
 			pl->updateCounters(116, Mod::get()->getSavedValue("upgrade4", 0));
+
+			//Blacksmith Freed
+			pl->m_effectManager->updateCountForItem(126, Mod::get()->getSavedValue("blacksmith", 0));
+			pl->updateCounters(126, Mod::get()->getSavedValue("blacksmith", 0));
+
+			//Furthest Reached
+			pl->m_effectManager->updateCountForItem(122, Mod::get()->getSavedValue("furthest", 0));
+			pl->updateCounters(122, Mod::get()->getSavedValue("furthest", 0));
+
+			//New NPC
+			pl->m_effectManager->updateCountForItem(127, Mod::get()->getSavedValue("visitor", 0));
+			pl->updateCounters(127, Mod::get()->getSavedValue("visitor", 0));
+
+			//Times Stolen
+			pl->m_effectManager->updateCountForItem(123, Mod::get()->getSavedValue("times_stolen", 0));
+			pl->updateCounters(123, Mod::get()->getSavedValue("times_stolen", 0));
+
+			//Entered Stage 1?
+			pl->m_effectManager->updateCountForItem(128, Mod::get()->getSavedValue("entered1", 0));
+			pl->updateCounters(128, Mod::get()->getSavedValue("entered1", 0));
 		}
 	}
 
 	virtual void onExit() {
 		PlayLayer::onExit();
 		PlayLayer* pl = playlayer();
-		if (pl->m_level->m_levelID == LEVEL_ID) {
+		if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR)) {
 			//Souls
 			Mod::get()->setSavedValue<int>("souls", pl->m_effectManager->countForItem(64));
 
@@ -92,6 +111,21 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			//Ice Boots Upgrades
 			Mod::get()->setSavedValue<int>("upgrade4", pl->m_effectManager->countForItem(116));
+
+			//Blacksmith Freed
+			Mod::get()->setSavedValue<int>("blacksmith", pl->m_effectManager->countForItem(126));
+
+			//Furthest Reached
+			Mod::get()->setSavedValue<int>("furthest", pl->m_effectManager->countForItem(122));
+
+			//New NPC
+			Mod::get()->setSavedValue<int>("visitor", pl->m_effectManager->countForItem(127));
+
+			//Times Stolen
+			Mod::get()->setSavedValue<int>("times_stolen", pl->m_effectManager->countForItem(123));
+			
+			//Entered Stage 1?
+			Mod::get()->setSavedValue<int>("entered1", pl->m_effectManager->countForItem(128));
 		}
 	}
 };
