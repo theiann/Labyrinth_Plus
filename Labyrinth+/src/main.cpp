@@ -81,6 +81,10 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Entered Stage 1?
 			pl->m_effectManager->updateCountForItem(128, Mod::get()->getSavedValue("entered1", 0));
 			pl->updateCounters(128, Mod::get()->getSavedValue("entered1", 0));
+
+			//Loot Goblin
+			pl->m_effectManager->updateCountForItem(177, Mod::get()->getSavedValue("loot_goblin", 0));
+			pl->updateCounters(177, Mod::get()->getSavedValue("loot_goblin", 0));
 		}
 	}
 
@@ -126,6 +130,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			
 			//Entered Stage 1?
 			Mod::get()->setSavedValue<int>("entered1", pl->m_effectManager->countForItem(128));
+
+			//Loot Goblin
+			Mod::get()->setSavedValue<int>("loot_goblin", pl->m_effectManager->countForItem(177));
 		}
 	}
 };
