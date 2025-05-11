@@ -71,8 +71,8 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			pl->updateCounters(122, Mod::get()->getSavedValue("furthest", 0));
 
 			//New NPC
-			pl->m_effectManager->updateCountForItem(127, Mod::get()->getSavedValue("visitor", 0));
-			pl->updateCounters(127, Mod::get()->getSavedValue("visitor", 0));
+			//pl->m_effectManager->updateCountForItem(127, Mod::get()->getSavedValue("visitor", 0));
+			//pl->updateCounters(127, Mod::get()->getSavedValue("visitor", 0));
 
 			//Times Stolen
 			pl->m_effectManager->updateCountForItem(123, Mod::get()->getSavedValue("times_stolen", 0));
@@ -85,6 +85,10 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Loot Goblin
 			pl->m_effectManager->updateCountForItem(177, Mod::get()->getSavedValue("loot_goblin", 0));
 			pl->updateCounters(177, Mod::get()->getSavedValue("loot_goblin", 0));
+
+			//Shortcut progress
+			pl->m_effectManager->updateCountForItem(180, Mod::get()->getSavedValue("shortcut", 0));
+			pl->updateCounters(180, Mod::get()->getSavedValue("shortcut", 0));
 		}
 	}
 
@@ -123,7 +127,7 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			Mod::get()->setSavedValue<int>("furthest", pl->m_effectManager->countForItem(122));
 
 			//New NPC
-			Mod::get()->setSavedValue<int>("visitor", pl->m_effectManager->countForItem(127));
+			//Mod::get()->setSavedValue<int>("visitor", pl->m_effectManager->countForItem(127));
 
 			//Times Stolen
 			Mod::get()->setSavedValue<int>("times_stolen", pl->m_effectManager->countForItem(123));
@@ -133,6 +137,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			//Loot Goblin
 			Mod::get()->setSavedValue<int>("loot_goblin", pl->m_effectManager->countForItem(177));
+
+			//Shortcut progress
+			Mod::get()->setSavedValue<int>("shortcut", pl->m_effectManager->countForItem(180));
 		}
 	}
 };
