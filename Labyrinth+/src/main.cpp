@@ -89,6 +89,10 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Shortcut progress
 			pl->m_effectManager->updateCountForItem(180, Mod::get()->getSavedValue("shortcut", 0));
 			pl->updateCounters(180, Mod::get()->getSavedValue("shortcut", 0));
+
+			//Trail selected
+			pl->m_effectManager->updateCountForItem(119, Mod::get()->getSavedValue("trail", 0));
+			pl->updateCounters(119, Mod::get()->getSavedValue("trail", 0));
 		}
 	}
 
@@ -140,6 +144,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			//Shortcut progress
 			Mod::get()->setSavedValue<int>("shortcut", pl->m_effectManager->countForItem(180));
+
+			//Trail Selected
+			Mod::get()->setSavedValue<int>("trail", pl->m_effectManager->countForItem(119));
 		}
 	}
 };
