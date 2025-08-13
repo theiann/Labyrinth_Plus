@@ -93,6 +93,46 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Trail selected
 			pl->m_effectManager->updateCountForItem(119, Mod::get()->getSavedValue("trail", 0));
 			pl->updateCounters(119, Mod::get()->getSavedValue("trail", 0));
+
+			//Perk equiped
+			pl->m_effectManager->updateCountForItem(8998, Mod::get()->getSavedValue("equipedpos", 0));
+			pl->updateCounters(8998, Mod::get()->getSavedValue("equipedpos", 0));
+
+			//Charisma Perk
+			pl->m_effectManager->updateCountForItem(8996, Mod::get()->getSavedValue("charismaperk", 0));
+			pl->updateCounters(8996, Mod::get()->getSavedValue("charismaperk", 0));
+
+			//Eye Spy Perk
+			pl->m_effectManager->updateCountForItem(8995, Mod::get()->getSavedValue("ispyperk", 0));
+			pl->updateCounters(8995, Mod::get()->getSavedValue("ispyperk", 0));
+
+			//Blast Process Perk
+			pl->m_effectManager->updateCountForItem(8994, Mod::get()->getSavedValue("blastperk", 0));
+			pl->updateCounters(8994, Mod::get()->getSavedValue("blastperk", 0));
+
+			//Gambler Perk
+			pl->m_effectManager->updateCountForItem(8993, Mod::get()->getSavedValue("gamblerperk", 0));
+			pl->updateCounters(8993, Mod::get()->getSavedValue("gamblerperk", 0));
+
+			//Shopping Addict Perk
+			pl->m_effectManager->updateCountForItem(8992, Mod::get()->getSavedValue("shopcompassperk", 0));
+			pl->updateCounters(8992, Mod::get()->getSavedValue("shopcompassperk", 0));
+
+			//Obsidian Skin Perk
+			pl->m_effectManager->updateCountForItem(8991, Mod::get()->getSavedValue("lavaperk", 0));
+			pl->updateCounters(8991, Mod::get()->getSavedValue("lavaperk", 0));
+
+			//Shoplifter Perk
+			pl->m_effectManager->updateCountForItem(8990, Mod::get()->getSavedValue("stealperk", 0));
+			pl->updateCounters(8990, Mod::get()->getSavedValue("lavaperk", 0));
+
+			//Speedballing Perk
+			pl->m_effectManager->updateCountForItem(8989, Mod::get()->getSavedValue("speedperk", 0));
+			pl->updateCounters(8989, Mod::get()->getSavedValue("speedperk", 0));
+
+			//Big Man Perk
+			pl->m_effectManager->updateCountForItem(8988, Mod::get()->getSavedValue("bigmanperk", 0));
+			pl->updateCounters(8988, Mod::get()->getSavedValue("bigmanperk", 0));
 		}
 	}
 
@@ -147,6 +187,36 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			//Trail Selected
 			Mod::get()->setSavedValue<int>("trail", pl->m_effectManager->countForItem(119));
+
+			//Perk Selected
+			Mod::get()->setSavedValue<int>("equipedpos", pl->m_effectManager->countForItem(8998));
+
+			//Charisma Perk
+			Mod::get()->setSavedValue<int>("charismaperk", pl->m_effectManager->countForItem(8996));
+
+			//Eye Spy perk
+			Mod::get()->setSavedValue<int>("ispyperk", pl->m_effectManager->countForItem(8995));
+
+			//Blast Process
+			Mod::get()->setSavedValue<int>("blastperk", pl->m_effectManager->countForItem(8994));
+
+			//Gambler perk
+			Mod::get()->setSavedValue<int>("gamblerperk", pl->m_effectManager->countForItem(8993));
+
+			//Shopping Addict perk
+			Mod::get()->setSavedValue<int>("shopcompassperk", pl->m_effectManager->countForItem(8992));
+
+			//Obsidian Skin perk
+			Mod::get()->setSavedValue<int>("lavaperk", pl->m_effectManager->countForItem(8991));
+
+			//Shoplifter perk
+			Mod::get()->setSavedValue<int>("stealperk", pl->m_effectManager->countForItem(8990));
+
+			//Speedballing perk
+			Mod::get()->setSavedValue<int>("speedperk", pl->m_effectManager->countForItem(8989));
+			
+			//Big Man perk
+			Mod::get()->setSavedValue<int>("bigmanperk", pl->m_effectManager->countForItem(8988));
 		}
 	}
 };
