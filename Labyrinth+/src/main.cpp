@@ -133,6 +133,66 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Big Man Perk
 			pl->m_effectManager->updateCountForItem(8988, Mod::get()->getSavedValue("bigmanperk", 0));
 			pl->updateCounters(8988, Mod::get()->getSavedValue("bigmanperk", 0));
+
+			//Navigator Perk
+			pl->m_effectManager->updateCountForItem(8987, Mod::get()->getSavedValue("compassperk", 0));
+			pl->updateCounters(8987, Mod::get()->getSavedValue("compassperk", 0));
+
+			//Curse of Greed Perk
+			pl->m_effectManager->updateCountForItem(8986, Mod::get()->getSavedValue("greedperk", 0));
+			pl->updateCounters(8986, Mod::get()->getSavedValue("greedperk", 0));\
+
+			//Rooted Step Perk
+			pl->m_effectManager->updateCountForItem(8985, Mod::get()->getSavedValue("rootedstepperk", 0));
+			pl->updateCounters(8985, Mod::get()->getSavedValue("rootedstepperk", 0));
+			
+			//Interest Perk
+			pl->m_effectManager->updateCountForItem(8984, Mod::get()->getSavedValue("interestperk", 0));
+			pl->updateCounters(8984, Mod::get()->getSavedValue("interestperk", 0));
+
+			//Rich Perk
+			pl->m_effectManager->updateCountForItem(8983, Mod::get()->getSavedValue("richperk", 0));
+			pl->updateCounters(8983, Mod::get()->getSavedValue("richperk", 0));
+
+			//Clearance Perk
+			pl->m_effectManager->updateCountForItem(8982, Mod::get()->getSavedValue("clearanceperk", 0));
+			pl->updateCounters(8982, Mod::get()->getSavedValue("clearanceperk", 0));
+
+			//Surplus Perk
+			pl->m_effectManager->updateCountForItem(8981, Mod::get()->getSavedValue("surplusperk", 0));
+			pl->updateCounters(8981, Mod::get()->getSavedValue("surplusperk", 0));
+
+			//Demolitions Expert Perk
+			pl->m_effectManager->updateCountForItem(8980, Mod::get()->getSavedValue("bombperk", 0));
+			pl->updateCounters(8980, Mod::get()->getSavedValue("bombperk", 0));
+
+			//Soulful Perk
+			pl->m_effectManager->updateCountForItem(8979, Mod::get()->getSavedValue("soulfulperk", 0));
+			pl->updateCounters(8979, Mod::get()->getSavedValue("soulfulperk", 0));
+
+			//Perk key 1
+			pl->m_effectManager->updateCountForItem(8974, Mod::get()->getSavedValue("key1", 0));
+			pl->updateCounters(8974, Mod::get()->getSavedValue("key1", 0));
+
+			//Perk key 2
+			pl->m_effectManager->updateCountForItem(8973, Mod::get()->getSavedValue("key2", 0));
+			pl->updateCounters(8973, Mod::get()->getSavedValue("key2", 0));
+
+			//Perk key 3
+			pl->m_effectManager->updateCountForItem(8972, Mod::get()->getSavedValue("key3", 0));
+			pl->updateCounters(8972, Mod::get()->getSavedValue("key3", 0));
+
+			//Perk key 1 total
+			pl->m_effectManager->updateCountForItem(8975, Mod::get()->getSavedValue("key1total", 0));
+			pl->updateCounters(8975, Mod::get()->getSavedValue("key1total", 0));
+
+			//Perk key 2 total
+			pl->m_effectManager->updateCountForItem(8976, Mod::get()->getSavedValue("key2total", 0));
+			pl->updateCounters(8976, Mod::get()->getSavedValue("key2total", 0));
+
+			//Perk key 3 total
+			pl->m_effectManager->updateCountForItem(8977, Mod::get()->getSavedValue("key3total", 0));
+			pl->updateCounters(8977, Mod::get()->getSavedValue("key3total", 0));
 		}
 	}
 
@@ -217,6 +277,53 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			
 			//Big Man perk
 			Mod::get()->setSavedValue<int>("bigmanperk", pl->m_effectManager->countForItem(8988));
+
+			//Navigator perk
+			Mod::get()->setSavedValue<int>("compassperk", pl->m_effectManager->countForItem(8987));
+
+			//Curse of Greed perk
+			Mod::get()->setSavedValue<int>("greedperk", pl->m_effectManager->countForItem(8986));
+
+			//Rooted Step perk
+			Mod::get()->setSavedValue<int>("rootedstepperk", pl->m_effectManager->countForItem(8985));
+
+			//Interest perk
+			Mod::get()->setSavedValue<int>("interestperk", pl->m_effectManager->countForItem(8984));
+
+			//Rich perk
+			Mod::get()->setSavedValue<int>("richperk", pl->m_effectManager->countForItem(8983));
+
+			//Clearance perk
+			Mod::get()->setSavedValue<int>("clearanceperk", pl->m_effectManager->countForItem(8982));
+
+			//Surplus perk
+			Mod::get()->setSavedValue<int>("surplusperk", pl->m_effectManager->countForItem(8981));
+
+			//Demolitions Expert perk
+			Mod::get()->setSavedValue<int>("bombperk", pl->m_effectManager->countForItem(8980));
+
+			//Soulful perk
+			Mod::get()->setSavedValue<int>("soulfulperk", pl->m_effectManager->countForItem(8979));
+
+			//Perk key 1
+			Mod::get()->setSavedValue<int>("key1", pl->m_effectManager->countForItem(8974));
+
+			//Perk key 2
+			Mod::get()->setSavedValue<int>("key2", pl->m_effectManager->countForItem(8973));
+
+			//Perk key 3
+			Mod::get()->setSavedValue<int>("key3", pl->m_effectManager->countForItem(8972));
+
+			//Perk key 1 total
+			Mod::get()->setSavedValue<int>("key1total", pl->m_effectManager->countForItem(8975));
+
+			//Perk key 2 total
+			Mod::get()->setSavedValue<int>("key2total", pl->m_effectManager->countForItem(8976));
+
+			//Perk key 3 total
+			Mod::get()->setSavedValue<int>("key3total", pl->m_effectManager->countForItem(8977));
+
+
 		}
 	}
 };
