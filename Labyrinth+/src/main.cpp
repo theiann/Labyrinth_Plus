@@ -18,7 +18,10 @@ using namespace geode::prelude;
 
 const std::string LEVEL_CREATOR = "tricipital";
 const std::string LEVEL_NAME = "Labyrinth";
-
+std::string achievements[] = {"beginnings","big spender","quick death","cursed","thievery", "upgrade", "min max", "ispy","boom","invigorated","flying","spicy",
+							  "freezing", "zap", "shutdown", "mystery", "prepared", "shortcut","sneaky deals", "secret box", "game time", "casino blitz","collector",
+							  "speedrunner1","speedrunner2","speedrunner3","speedrunner4","it lives","it rests","sneaky sneaky","droppy","good ending","escapee",
+							  "adventurer1","adventurer2","adventurer3","adventurer4","how to adventure","speed of light","blank","blank","blank"};
 
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
@@ -193,6 +196,12 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Perk key 3 total
 			pl->m_effectManager->updateCountForItem(8977, Mod::get()->getSavedValue("key3total", 0));
 			pl->updateCounters(8977, Mod::get()->getSavedValue("key3total", 0));
+			
+			
+			for (int i = 0; i < 40; i++) {
+				pl->m_effectManager->updateCountForItem(i+1000, Mod::get()->getSavedValue(achievements[i], 0));
+				pl->updateCounters(i+1000, Mod::get()->getSavedValue(achievements[i], 0));
+			}
 		}
 	}
 
@@ -323,7 +332,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Perk key 3 total
 			Mod::get()->setSavedValue<int>("key3total", pl->m_effectManager->countForItem(8977));
 
-
+			for (int i = 0; i < 40; i++) {
+				Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i+1000));
+			}
 		}
 	}
 };
