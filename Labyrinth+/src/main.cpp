@@ -8,6 +8,7 @@
 #include <Geode/cocos/base_nodes/CCNode.h>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/loader/Mod.hpp>
+#include <time.h>
 
 inline auto playlayer() { return GameManager::sharedState()->m_playLayer; }
 /**
@@ -18,18 +19,29 @@ using namespace geode::prelude;
 
 const std::string LEVEL_CREATOR = "tricipital";
 const std::string LEVEL_NAME = "Labyrinth";
-std::string achievements[] = {"beginnings","big spender","quick death","cursed","thievery", "upgrade", "min max", "ispy","boom","invigorated","flying","spicy",
+std::string achievements[] = { "beginnings","big spender","quick death","cursed","thievery", "upgrade", "min max", "ispy","boom","invigorated","flying","spicy",
 							  "freezing", "zap", "shutdown", "mystery", "prepared", "shortcut","sneaky deals", "secret box", "game time", "casino blitz","collector",
 							  "speedrunner1","speedrunner2","speedrunner3","speedrunner4","it lives","it rests","sneaky sneaky","droppy","good ending","escapee",
-							  "adventurer1","adventurer2","adventurer3","adventurer4","how to adventure","speed of light","blank","blank","blank"};
+							  "adventurer1","adventurer2","adventurer3","adventurer4","how to adventure","speed of light","blank","blank","blank" };
 
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 class $modify(MyPlayerLayer, PlayLayer) {
-	void setupHasCompleted(){
+	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
 		PlayLayer* pl = playlayer();
 		if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true)) {
+
+			// Checking for IRL day or night
+			time_t currentTime = time(NULL);
+			struct tm* localTime = localtime(&currentTime);
+			int currentHour = localTime->tm_hour;
+			if ((currentHour >= 19) || (currentHour <= 6)){
+				pl->m_effectManager->updateCountForItem(431, 1);
+				pl->updateCounters(431, 1);
+			}
+
+			
 			pl->m_effectManager->updateCountForItem(233, 1);
 			pl->updateCounters(233, 1);
 

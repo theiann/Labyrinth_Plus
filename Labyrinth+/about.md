@@ -8,4 +8,5 @@ A mod that adds many quality of life features for Labyrinth. Progress in the lev
 - Stat viewer
 
 # Credits
-**[iAndy_HD3](user:1688850)**: Coding help
+- **[iAndy_HD3](user:1688850)**: Coding help
+- **[GDTicLos](user:13935562)**: Labyrinth+ logo art
