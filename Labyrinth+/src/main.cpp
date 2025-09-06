@@ -24,8 +24,141 @@ std::string achievements[] = { "beginnings","big spender","quick death","cursed"
 							  "speedrunner1","speedrunner2","speedrunner3","speedrunner4","it lives","it rests","sneaky sneaky","droppy","good ending","escapee",
 							  "adventurer1","adventurer2","adventurer3","adventurer4","how to adventure","speed of light","blank","blank","blank" };
 
+
+
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
+
+static void saveState(PlayLayer* pl) {
+	if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR)) {
+		//Souls
+		Mod::get()->setSavedValue<int>("souls", pl->m_effectManager->countForItem(64));
+
+		//Has gotten a soul before
+		Mod::get()->setSavedValue<int>("has_gotten_soul", pl->m_effectManager->countForItem(65));
+
+		//Language
+		Mod::get()->setSavedValue<int>("language", pl->m_effectManager->countForItem(58));
+
+		//Idle Lookdown
+		Mod::get()->setSavedValue<int>("idle_lookdown", pl->m_effectManager->countForItem(99));
+
+		//Bounce Staff Upgrades
+		Mod::get()->setSavedValue<int>("upgrade1", pl->m_effectManager->countForItem(113));
+
+		//Teleporter Upgrades
+		Mod::get()->setSavedValue<int>("upgrade2", pl->m_effectManager->countForItem(114));
+
+		//Jetpack Upgrades
+		Mod::get()->setSavedValue<int>("upgrade3", pl->m_effectManager->countForItem(115));
+
+		//Ice Boots Upgrades
+		Mod::get()->setSavedValue<int>("upgrade4", pl->m_effectManager->countForItem(116));
+
+		//Blacksmith Freed
+		Mod::get()->setSavedValue<int>("blacksmith", pl->m_effectManager->countForItem(126));
+
+		//Furthest Reached
+		Mod::get()->setSavedValue<int>("furthest", pl->m_effectManager->countForItem(122));
+
+		//New NPC
+		//Mod::get()->setSavedValue<int>("visitor", pl->m_effectManager->countForItem(127));
+
+		//Times Stolen
+		Mod::get()->setSavedValue<int>("times_stolen", pl->m_effectManager->countForItem(123));
+
+		//Entered Stage 1?
+		Mod::get()->setSavedValue<int>("entered1", pl->m_effectManager->countForItem(128));
+
+		//Loot Goblin
+		Mod::get()->setSavedValue<int>("loot_goblin", pl->m_effectManager->countForItem(177));
+
+		//Shortcut progress
+		Mod::get()->setSavedValue<int>("shortcut", pl->m_effectManager->countForItem(180));
+
+		//Trail Selected
+		Mod::get()->setSavedValue<int>("trail", pl->m_effectManager->countForItem(119));
+
+		//Perk Selected
+		Mod::get()->setSavedValue<int>("equipedpos", pl->m_effectManager->countForItem(8998));
+
+		//Charisma Perk
+		Mod::get()->setSavedValue<int>("charismaperk", pl->m_effectManager->countForItem(8996));
+
+		//Eye Spy perk
+		Mod::get()->setSavedValue<int>("ispyperk", pl->m_effectManager->countForItem(8995));
+
+		//Blast Process
+		Mod::get()->setSavedValue<int>("blastperk", pl->m_effectManager->countForItem(8994));
+
+		//Gambler perk
+		Mod::get()->setSavedValue<int>("gamblerperk", pl->m_effectManager->countForItem(8993));
+
+		//Shopping Addict perk
+		Mod::get()->setSavedValue<int>("shopcompassperk", pl->m_effectManager->countForItem(8992));
+
+		//Obsidian Skin perk
+		Mod::get()->setSavedValue<int>("lavaperk", pl->m_effectManager->countForItem(8991));
+
+		//Shoplifter perk
+		Mod::get()->setSavedValue<int>("stealperk", pl->m_effectManager->countForItem(8990));
+
+		//Speedballing perk
+		Mod::get()->setSavedValue<int>("speedperk", pl->m_effectManager->countForItem(8989));
+
+		//Big Man perk
+		Mod::get()->setSavedValue<int>("bigmanperk", pl->m_effectManager->countForItem(8988));
+
+		//Navigator perk
+		Mod::get()->setSavedValue<int>("compassperk", pl->m_effectManager->countForItem(8987));
+
+		//Curse of Greed perk
+		Mod::get()->setSavedValue<int>("greedperk", pl->m_effectManager->countForItem(8986));
+
+		//Rooted Step perk
+		Mod::get()->setSavedValue<int>("rootedstepperk", pl->m_effectManager->countForItem(8985));
+
+		//Interest perk
+		Mod::get()->setSavedValue<int>("interestperk", pl->m_effectManager->countForItem(8984));
+
+		//Rich perk
+		Mod::get()->setSavedValue<int>("richperk", pl->m_effectManager->countForItem(8983));
+
+		//Clearance perk
+		Mod::get()->setSavedValue<int>("clearanceperk", pl->m_effectManager->countForItem(8982));
+
+		//Surplus perk
+		Mod::get()->setSavedValue<int>("surplusperk", pl->m_effectManager->countForItem(8981));
+
+		//Demolitions Expert perk
+		Mod::get()->setSavedValue<int>("bombperk", pl->m_effectManager->countForItem(8980));
+
+		//Soulful perk
+		Mod::get()->setSavedValue<int>("soulfulperk", pl->m_effectManager->countForItem(8979));
+
+		//Perk key 1
+		Mod::get()->setSavedValue<int>("key1", pl->m_effectManager->countForItem(8974));
+
+		//Perk key 2
+		Mod::get()->setSavedValue<int>("key2", pl->m_effectManager->countForItem(8973));
+
+		//Perk key 3
+		Mod::get()->setSavedValue<int>("key3", pl->m_effectManager->countForItem(8972));
+
+		//Perk key 1 total
+		Mod::get()->setSavedValue<int>("key1total", pl->m_effectManager->countForItem(8975));
+
+		//Perk key 2 total
+		Mod::get()->setSavedValue<int>("key2total", pl->m_effectManager->countForItem(8976));
+
+		//Perk key 3 total
+		Mod::get()->setSavedValue<int>("key3total", pl->m_effectManager->countForItem(8977));
+
+		for (int i = 0; i < 40; i++) {
+			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
+		}
+	}
+}
 class $modify(MyPlayerLayer, PlayLayer) {
 	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
@@ -220,133 +353,12 @@ class $modify(MyPlayerLayer, PlayLayer) {
 	virtual void onExit() {
 		PlayLayer::onExit();
 		PlayLayer* pl = playlayer();
-		if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR)) {
-			//Souls
-			Mod::get()->setSavedValue<int>("souls", pl->m_effectManager->countForItem(64));
+		saveState(pl);
+	}
 
-			//Has gotten a soul before
-			Mod::get()->setSavedValue<int>("has_gotten_soul", pl->m_effectManager->countForItem(65));
-
-			//Language
-			Mod::get()->setSavedValue<int>("language", pl->m_effectManager->countForItem(58));
-
-			//Idle Lookdown
-			Mod::get()->setSavedValue<int>("idle_lookdown", pl->m_effectManager->countForItem(99));
-
-			//Bounce Staff Upgrades
-			Mod::get()->setSavedValue<int>("upgrade1", pl->m_effectManager->countForItem(113));
-
-			//Teleporter Upgrades
-			Mod::get()->setSavedValue<int>("upgrade2", pl->m_effectManager->countForItem(114));
-
-			//Jetpack Upgrades
-			Mod::get()->setSavedValue<int>("upgrade3", pl->m_effectManager->countForItem(115));
-
-			//Ice Boots Upgrades
-			Mod::get()->setSavedValue<int>("upgrade4", pl->m_effectManager->countForItem(116));
-
-			//Blacksmith Freed
-			Mod::get()->setSavedValue<int>("blacksmith", pl->m_effectManager->countForItem(126));
-
-			//Furthest Reached
-			Mod::get()->setSavedValue<int>("furthest", pl->m_effectManager->countForItem(122));
-
-			//New NPC
-			//Mod::get()->setSavedValue<int>("visitor", pl->m_effectManager->countForItem(127));
-
-			//Times Stolen
-			Mod::get()->setSavedValue<int>("times_stolen", pl->m_effectManager->countForItem(123));
-			
-			//Entered Stage 1?
-			Mod::get()->setSavedValue<int>("entered1", pl->m_effectManager->countForItem(128));
-
-			//Loot Goblin
-			Mod::get()->setSavedValue<int>("loot_goblin", pl->m_effectManager->countForItem(177));
-
-			//Shortcut progress
-			Mod::get()->setSavedValue<int>("shortcut", pl->m_effectManager->countForItem(180));
-
-			//Trail Selected
-			Mod::get()->setSavedValue<int>("trail", pl->m_effectManager->countForItem(119));
-
-			//Perk Selected
-			Mod::get()->setSavedValue<int>("equipedpos", pl->m_effectManager->countForItem(8998));
-
-			//Charisma Perk
-			Mod::get()->setSavedValue<int>("charismaperk", pl->m_effectManager->countForItem(8996));
-
-			//Eye Spy perk
-			Mod::get()->setSavedValue<int>("ispyperk", pl->m_effectManager->countForItem(8995));
-
-			//Blast Process
-			Mod::get()->setSavedValue<int>("blastperk", pl->m_effectManager->countForItem(8994));
-
-			//Gambler perk
-			Mod::get()->setSavedValue<int>("gamblerperk", pl->m_effectManager->countForItem(8993));
-
-			//Shopping Addict perk
-			Mod::get()->setSavedValue<int>("shopcompassperk", pl->m_effectManager->countForItem(8992));
-
-			//Obsidian Skin perk
-			Mod::get()->setSavedValue<int>("lavaperk", pl->m_effectManager->countForItem(8991));
-
-			//Shoplifter perk
-			Mod::get()->setSavedValue<int>("stealperk", pl->m_effectManager->countForItem(8990));
-
-			//Speedballing perk
-			Mod::get()->setSavedValue<int>("speedperk", pl->m_effectManager->countForItem(8989));
-			
-			//Big Man perk
-			Mod::get()->setSavedValue<int>("bigmanperk", pl->m_effectManager->countForItem(8988));
-
-			//Navigator perk
-			Mod::get()->setSavedValue<int>("compassperk", pl->m_effectManager->countForItem(8987));
-
-			//Curse of Greed perk
-			Mod::get()->setSavedValue<int>("greedperk", pl->m_effectManager->countForItem(8986));
-
-			//Rooted Step perk
-			Mod::get()->setSavedValue<int>("rootedstepperk", pl->m_effectManager->countForItem(8985));
-
-			//Interest perk
-			Mod::get()->setSavedValue<int>("interestperk", pl->m_effectManager->countForItem(8984));
-
-			//Rich perk
-			Mod::get()->setSavedValue<int>("richperk", pl->m_effectManager->countForItem(8983));
-
-			//Clearance perk
-			Mod::get()->setSavedValue<int>("clearanceperk", pl->m_effectManager->countForItem(8982));
-
-			//Surplus perk
-			Mod::get()->setSavedValue<int>("surplusperk", pl->m_effectManager->countForItem(8981));
-
-			//Demolitions Expert perk
-			Mod::get()->setSavedValue<int>("bombperk", pl->m_effectManager->countForItem(8980));
-
-			//Soulful perk
-			Mod::get()->setSavedValue<int>("soulfulperk", pl->m_effectManager->countForItem(8979));
-
-			//Perk key 1
-			Mod::get()->setSavedValue<int>("key1", pl->m_effectManager->countForItem(8974));
-
-			//Perk key 2
-			Mod::get()->setSavedValue<int>("key2", pl->m_effectManager->countForItem(8973));
-
-			//Perk key 3
-			Mod::get()->setSavedValue<int>("key3", pl->m_effectManager->countForItem(8972));
-
-			//Perk key 1 total
-			Mod::get()->setSavedValue<int>("key1total", pl->m_effectManager->countForItem(8975));
-
-			//Perk key 2 total
-			Mod::get()->setSavedValue<int>("key2total", pl->m_effectManager->countForItem(8976));
-
-			//Perk key 3 total
-			Mod::get()->setSavedValue<int>("key3total", pl->m_effectManager->countForItem(8977));
-
-			for (int i = 0; i < 40; i++) {
-				Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i+1000));
-			}
-		}
+	void startGameDelayed() {
+		PlayLayer::startGameDelayed();
+		PlayLayer* pl = playlayer();
+		saveState(pl);
 	}
 };
