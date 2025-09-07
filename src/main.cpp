@@ -39,7 +39,8 @@ int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384
 
 
 int checkIfLabyrinth(PlayLayer* pl) {
-	return (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true));
+	std::string levelName = pl->m_level->m_levelName;
+	return ((levelName.compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true));
 }
 
 
@@ -218,7 +219,7 @@ class $modify(MyPlayerLayer, PlayLayer) {
 	void setupHasCompleted() {
 		PlayLayer::setupHasCompleted();
 		PlayLayer* pl = playlayer();
-		if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true)) {
+		if (checkIfLabyrinth(pl) == 1) {
 
 			// Checking for IRL day or night
 			time_t currentTime = time(NULL);
