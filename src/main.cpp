@@ -11,6 +11,7 @@
 #include <time.h>
 
 inline auto playlayer() { return GameManager::sharedState()->m_playLayer; }
+int userAccountID = GJAccountManager::sharedState()->m_accountID;
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.
  */
@@ -24,13 +25,68 @@ std::string achievements[] = { "beginnings","big spender","quick death","cursed"
 							  "speedrunner1","speedrunner2","speedrunner3","speedrunner4","it lives","it rests","sneaky sneaky","droppy","good ending","escapee",
 							  "adventurer1","adventurer2","adventurer3","adventurer4","how to adventure","speed of light","blank","blank","blank" };
 
+int playtesterIDs[] = { 6061424 ,4712395 , 11826816 , 63047 , 106255 , 4569963 , 1788352 , 1292925 , 2156992 , 1327813 , 8328899 , 2358957 , 201646 , 5375030 , 104497 ,
+						42681 , 1696128 , 15875490 , 1521580 , 7060819 , 3578384 , 13842489 , 2671693 , 1249399 , 8002621 , 21476843 , 4103842 , 6192122 , 10905351 ,
+						16750360 , 13935562 , 19542150 , 18298730 , 20063614 , 25373869 , 11167197 , 3822295 , 7882688 };
+
+int contributorIDs[] = { 6061424 , 7882688 , 63047 , 34602 , 13903094 , 11167197 , 11826816 , 3166813 , 16610096 , 8851103 , 20371964 , 1696128 , 6225348 , 7709071 ,
+						 8328899 , 20550026 , 13842489 , 2671693 , 16494507 , 8002621 , 14277495 , 54944 , 19864272 , 21113321 , 21476843 , 19691441 , 7060384 , 
+						 20581650 , 21679473 , 5454096 };
+
+int contestIDs[] = { 6061424 };
+
+int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384585 , 2671693 , 13842489 , 27995263 , 63047 };
+
+
+int checkIfLabyrinth(PlayLayer* pl) {
+	return (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR) && (Mod::get()->hasSavedValue("souls") == true));
+}
+
+
+void specialPrivs(PlayLayer* pl) {
+
+	// User has Labyrinth+ enabled
+	pl->m_effectManager->updateCountForItem(233, 1);
+	pl->updateCounters(233, 1);
+	
+	// Checking for if the user is a playtester
+	for (int i = 0; i < 38; i++) {
+		if (playtesterIDs[i] == userAccountID) {
+			pl->m_effectManager->updateCountForItem(432, 1);
+			pl->updateCounters(432, 1);
+		}
+	}
+	// Checking for if the user is a contributor
+	for (int i = 0; i < 30; i++) {
+		if (contributorIDs[i] == userAccountID) {
+			pl->m_effectManager->updateCountForItem(433, 1);
+			pl->updateCounters(433, 1);
+		}
+	}
+
+	// Checking for if the user is a contest winner
+	for (int i = 0; i < 1; i++) {
+		if (contributorIDs[i] == userAccountID) {
+			pl->m_effectManager->updateCountForItem(434, 1);
+			pl->updateCounters(434, 1);
+		}
+	}
+
+	// Checking for if the user is a chatter
+	for (int i = 0; i < 10; i++) {
+		if (contributorIDs[i] == userAccountID) {
+			pl->m_effectManager->updateCountForItem(435, 1);
+			pl->updateCounters(435, 1);
+		}
+	}
+}
 
 
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
-
+#include <Geode/binding/InfoLayer.hpp>
 static void saveState(PlayLayer* pl) {
-	if (((pl->m_level->m_levelName).compare(0, 9, LEVEL_NAME, 0, 9) == 0) && (pl->m_level->m_creatorName == LEVEL_CREATOR)) {
+		int accountID = 
 		//Souls
 		Mod::get()->setSavedValue<int>("souls", pl->m_effectManager->countForItem(64));
 
@@ -157,7 +213,6 @@ static void saveState(PlayLayer* pl) {
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
 		}
-	}
 }
 class $modify(MyPlayerLayer, PlayLayer) {
 	void setupHasCompleted() {
@@ -347,6 +402,8 @@ class $modify(MyPlayerLayer, PlayLayer) {
 				pl->m_effectManager->updateCountForItem(i+1000, Mod::get()->getSavedValue(achievements[i], 0));
 				pl->updateCounters(i+1000, Mod::get()->getSavedValue(achievements[i], 0));
 			}
+
+			specialPrivs(pl);
 		}
 	}
 
@@ -359,6 +416,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 	void startGameDelayed() {
 		PlayLayer::startGameDelayed();
 		PlayLayer* pl = playlayer();
-		saveState(pl);
+		if (checkIfLabyrinth(pl) == 1) {
+			saveState(pl);
+			specialPrivs(pl);
+		}
 	}
 };
