@@ -211,6 +211,9 @@ static void saveState(PlayLayer* pl) {
 		//Perk key 3 total
 		Mod::get()->setSavedValue<int>("key3total", pl->m_effectManager->countForItem(8977));
 
+		//Perk witch progress
+		Mod::get()->setSavedValue<int>("perkwitch", pl->m_effectManager->countForItem(438));
+
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
 		}
@@ -397,6 +400,11 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Perk key 3 total
 			pl->m_effectManager->updateCountForItem(8977, Mod::get()->getSavedValue("key3total", 0));
 			pl->updateCounters(8977, Mod::get()->getSavedValue("key3total", 0));
+
+			//Perk witch progress
+			pl->m_effectManager->updateCountForItem(438, Mod::get()->getSavedValue("perkwitch", 0));
+			pl->updateCounters(438, Mod::get()->getSavedValue("perkwitch", 0));
+
 			
 			
 			for (int i = 0; i < 40; i++) {
