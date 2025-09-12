@@ -214,6 +214,9 @@ static void saveState(PlayLayer* pl) {
 		//Perk witch progress
 		Mod::get()->setSavedValue<int>("perkwitch", pl->m_effectManager->countForItem(438));
 
+		//How many times stage 1 has been entered for cutscene
+		Mod::get()->setSavedValue<int>("stage1cutscene", pl->m_effectManager->countForItem(439));
+
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
 		}
@@ -404,6 +407,10 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Perk witch progress
 			pl->m_effectManager->updateCountForItem(438, Mod::get()->getSavedValue("perkwitch", 0));
 			pl->updateCounters(438, Mod::get()->getSavedValue("perkwitch", 0));
+
+			//How many times stage 1 has been entered for cutscene
+			pl->m_effectManager->updateCountForItem(439, Mod::get()->getSavedValue("stage1cutscene", 0));
+			pl->updateCounters(439, Mod::get()->getSavedValue("stage1cutscene", 0));
 
 			
 			

@@ -1,1 +1,1 @@
-Edit this file to change your mod's support info, or delete it if you don't need it.
+If you like my work you can support me by following or subscribing to my [Twitch](https://www.twitch.tv/tricipital)!
