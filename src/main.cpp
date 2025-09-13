@@ -217,6 +217,12 @@ static void saveState(PlayLayer* pl) {
 		//How many times stage 1 has been entered for cutscene
 		Mod::get()->setSavedValue<int>("stage1cutscene", pl->m_effectManager->countForItem(439));
 
+		//trail ghost npc
+		Mod::get()->setSavedValue<int>("trailghost", pl->m_effectManager->countForItem(441));
+
+		//Death effect disable
+		Mod::get()->setSavedValue<int>("deatheffect", pl->m_effectManager->countForItem(419));
+
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
 		}
@@ -412,6 +418,13 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			pl->m_effectManager->updateCountForItem(439, Mod::get()->getSavedValue("stage1cutscene", 0));
 			pl->updateCounters(439, Mod::get()->getSavedValue("stage1cutscene", 0));
 
+			//trail ghost
+			pl->m_effectManager->updateCountForItem(441, Mod::get()->getSavedValue("trailghost", 0));
+			pl->updateCounters(441, Mod::get()->getSavedValue("trailghost", 0));
+
+			//Death effect disable
+			pl->m_effectManager->updateCountForItem(419, Mod::get()->getSavedValue("deatheffect", 0));
+			pl->updateCounters(419, Mod::get()->getSavedValue("deatheffect", 0));
 			
 			
 			for (int i = 0; i < 40; i++) {
