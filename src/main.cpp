@@ -223,6 +223,9 @@ static void saveState(PlayLayer* pl) {
 		//Death effect disable
 		Mod::get()->setSavedValue<int>("deatheffect", pl->m_effectManager->countForItem(419));
 
+		//Speedrun timer setting
+		Mod::get()->setSavedValue<int>("speedruntimer", pl->m_effectManager->countForItem(358));
+
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
 		}
@@ -425,6 +428,10 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Death effect disable
 			pl->m_effectManager->updateCountForItem(419, Mod::get()->getSavedValue("deatheffect", 0));
 			pl->updateCounters(419, Mod::get()->getSavedValue("deatheffect", 0));
+
+			//Speedrun timer setting
+			pl->m_effectManager->updateCountForItem(358, Mod::get()->getSavedValue("speedruntimer", 0));
+			pl->updateCounters(358, Mod::get()->getSavedValue("speedruntimer", 0));
 			
 			
 			for (int i = 0; i < 40; i++) {
