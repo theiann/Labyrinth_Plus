@@ -27,15 +27,15 @@ std::string achievements[] = { "beginnings","big spender","quick death","cursed"
 
 int playtesterIDs[] = { 6061424 ,4712395 , 11826816 , 63047 , 106255 , 4569963 , 1788352 , 1292925 , 2156992 , 1327813 , 8328899 , 2358957 , 201646 , 5375030 , 104497 ,
 						42681 , 1696128 , 15875490 , 1521580 , 7060819 , 3578384 , 13842489 , 2671693 , 1249399 , 8002621 , 21476843 , 4103842 , 6192122 , 10905351 ,
-						16750360 , 13935562 , 19542150 , 18298730 , 20063614 , 25373869 , 11167197 , 3822295 , 7882688 };
+						16750360 , 13935562 , 19542150 , 18298730 , 20063614 , 25373869 , 11167197 , 3822295 , 7882688, 571210, 7346996 , 9471312, 20550026, 8921237, 24813127 };
 
 int contributorIDs[] = { 6061424 , 7882688 , 63047 , 34602 , 13903094 , 11167197 , 11826816 , 3166813 , 16610096 , 8851103 , 20371964 , 1696128 , 6225348 , 7709071 ,
 						 8328899 , 20550026 , 13842489 , 2671693 , 16494507 , 8002621 , 14277495 , 54944 , 19864272 , 21113321 , 21476843 , 19691441 , 7060384 , 
-						 20581650 , 21679473 , 5454096 };
+						 20581650 , 21679473 , 5454096 , 7346996};
 
 int contestIDs[] = { 6061424 };
 
-int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384585 , 2671693 , 13842489 , 27995263 , 63047 };
+int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384585 , 2671693 , 13842489 , 27995263 , 63047 , 16546314 , 4422848};
 
 
 int checkIfLabyrinth(PlayLayer* pl) {
@@ -225,6 +225,16 @@ static void saveState(PlayLayer* pl) {
 
 		//Speedrun timer setting
 		Mod::get()->setSavedValue<int>("speedruntimer", pl->m_effectManager->countForItem(358));
+
+		//Secret Combination 1
+		Mod::get()->setSavedValue<int>("combo1", pl->m_effectManager->countForItem(278));
+		//Secret Combination 2
+		Mod::get()->setSavedValue<int>("combo2", pl->m_effectManager->countForItem(279));
+		//Secret Combination 3
+		Mod::get()->setSavedValue<int>("combo3", pl->m_effectManager->countForItem(280));
+		//Secret Combination 4
+		Mod::get()->setSavedValue<int>("combo4", pl->m_effectManager->countForItem(281));
+
 
 		for (int i = 0; i < 40; i++) {
 			Mod::get()->setSavedValue<int>(achievements[i], pl->m_effectManager->countForItem(i + 1000));
@@ -432,6 +442,19 @@ class $modify(MyPlayerLayer, PlayLayer) {
 			//Speedrun timer setting
 			pl->m_effectManager->updateCountForItem(358, Mod::get()->getSavedValue("speedruntimer", 0));
 			pl->updateCounters(358, Mod::get()->getSavedValue("speedruntimer", 0));
+
+			//Secret Combination 1
+			pl->m_effectManager->updateCountForItem(278, Mod::get()->getSavedValue("combo1", 0));
+			pl->updateCounters(278, Mod::get()->getSavedValue("combo1", 0));
+			//Secret Combination 2
+			pl->m_effectManager->updateCountForItem(279, Mod::get()->getSavedValue("combo2", 0));
+			pl->updateCounters(279, Mod::get()->getSavedValue("combo2", 0));
+			//Secret Combination 3
+			pl->m_effectManager->updateCountForItem(280, Mod::get()->getSavedValue("combo3", 0));
+			pl->updateCounters(280, Mod::get()->getSavedValue("combo3", 0));
+			//Secret Combination 4
+			pl->m_effectManager->updateCountForItem(281, Mod::get()->getSavedValue("combo4", 0));
+			pl->updateCounters(281, Mod::get()->getSavedValue("combo4", 0));
 			
 			
 			for (int i = 0; i < 40; i++) {
