@@ -8,10 +8,11 @@
 #include <Geode/cocos/base_nodes/CCNode.h>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/loader/Mod.hpp>
-#include <time.h>
+#include <chrono>
+
 
 inline auto playlayer() { return GameManager::sharedState()->m_playLayer; }
-int userAccountID = GJAccountManager::sharedState()->m_accountID;
+
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.
  */
@@ -31,7 +32,7 @@ int playtesterIDs[] = { 6061424 ,4712395 , 11826816 , 63047 , 106255 , 4569963 ,
 
 int contributorIDs[] = { 6061424 , 7882688 , 63047 , 34602 , 13903094 , 11167197 , 11826816 , 3166813 , 16610096 , 8851103 , 20371964 , 1696128 , 6225348 , 7709071 ,
 						 8328899 , 20550026 , 13842489 , 2671693 , 16494507 , 8002621 , 14277495 , 54944 , 19864272 , 21113321 , 21476843 , 19691441 , 7060384 , 
-						 20581650 , 21679473 , 5454096 , 7346996};
+						 20581650 , 21679473 , 5454096 , 7346996 , 24813127 , 201646 };
 
 int contestIDs[] = { 6061424 };
 
@@ -45,20 +46,20 @@ int checkIfLabyrinth(PlayLayer* pl) {
 
 
 void specialPrivs(PlayLayer* pl) {
-
+	int userAccountID = GJAccountManager::sharedState()->m_accountID;
 	// User has Labyrinth+ enabled
 	pl->m_effectManager->updateCountForItem(233, 1);
 	pl->updateCounters(233, 1);
 	
 	// Checking for if the user is a playtester
-	for (int i = 0; i < 38; i++) {
+	for (int i = 0; i < (sizeof(playtesterIDs) / sizeof(playtesterIDs[0])); i++) {
 		if (playtesterIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(432, 1);
 			pl->updateCounters(432, 1);
 		}
 	}
 	// Checking for if the user is a contributor
-	for (int i = 0; i < 30; i++) {
+	for (int i = 0; i < (sizeof(contributorIDs) / sizeof(contributorIDs[0])); i++) {
 		if (contributorIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(433, 1);
 			pl->updateCounters(433, 1);
@@ -66,7 +67,7 @@ void specialPrivs(PlayLayer* pl) {
 	}
 
 	// Checking for if the user is a contest winner
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < (sizeof(contestIDs) / sizeof(contestIDs[0])); i++) {
 		if (contributorIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(434, 1);
 			pl->updateCounters(434, 1);
@@ -74,7 +75,7 @@ void specialPrivs(PlayLayer* pl) {
 	}
 
 	// Checking for if the user is a chatter
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < (sizeof(chatterIDs) / sizeof(chatterIDs[0])); i++) {
 		if (contributorIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(435, 1);
 			pl->updateCounters(435, 1);
@@ -87,7 +88,6 @@ void specialPrivs(PlayLayer* pl) {
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/binding/InfoLayer.hpp>
 static void saveState(PlayLayer* pl) {
-		int accountID = 
 		//Souls
 		Mod::get()->setSavedValue<int>("souls", pl->m_effectManager->countForItem(64));
 
@@ -247,10 +247,9 @@ class $modify(MyPlayerLayer, PlayLayer) {
 		if (checkIfLabyrinth(pl) == 1) {
 
 			// Checking for IRL day or night
-			time_t currentTime = time(NULL);
-			struct tm* localTime = localtime(&currentTime);
-			int currentHour = localTime->tm_hour;
-			if ((currentHour >= 19) || (currentHour <= 6)){
+			auto currentTime = std::time(NULL);
+			auto timeSheet = fmt::localtime(currentTime);
+			if ((timeSheet.tm_hour >= 19) || (timeSheet.tm_hour <= 6)){
 				pl->m_effectManager->updateCountForItem(431, 1);
 				pl->updateCounters(431, 1);
 			}
@@ -466,10 +465,12 @@ class $modify(MyPlayerLayer, PlayLayer) {
 		}
 	}
 
-	virtual void onExit() {
-		PlayLayer::onExit();
+	void onQuit() {
+		PlayLayer::onQuit();
 		PlayLayer* pl = playlayer();
-		saveState(pl);
+		if (checkIfLabyrinth(pl) == 1) {
+			saveState(pl);
+		}
 	}
 
 	void startGameDelayed() {
