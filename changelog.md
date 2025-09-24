@@ -1,3 +1,6 @@
+# 1.0.3
+- changed the version number lol
+
 # 1.0.2
 - Stupid stupid comparison wasn't working for new players
 
