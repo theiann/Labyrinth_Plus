@@ -27,11 +27,17 @@ static const std::unordered_set<int> CONTRIBUTOR_IDS = {
 static const std::unordered_set<int> CONTEST_IDS = { 6061424 };
 static const std::unordered_set<int> CHATTER_IDS = { 6061424, 25373869, 19542150, 28154640, 21476843, 31384585, 2671693, 13842489, 27995263, 63047, 16546314, 4422848 };
 
-constexpr auto ITEM_MAPPINGS = std::to_array<std::pair<std::string_view, int>>({
+struct ItemMapping {
+    std::string_view name;
+    int id;
+    int defaultValue = 0;
+};
+
+constexpr auto ITEM_MAPPINGS = std::to_array<ItemMapping>({
     {"souls", 64},             // Souls
     {"has_gotten_soul", 65},   // Has gotten a soul before
     {"language", 58},          // Language
-    {"idle_lookdown", 99},     // Idle Lookdown
+    {"idle_lookdown", 99, 2},  // Idle Lookdown
     {"upgrade1", 113},         // Bounce Staff Upgrades
     {"upgrade2", 114},         // Teleporter Upgrades
     {"upgrade3", 115},         // Jetpack Upgrades
@@ -83,7 +89,7 @@ constexpr auto ITEM_MAPPINGS = std::to_array<std::pair<std::string_view, int>>({
 class $modify(MyPlayerLayer, PlayLayer) {
     bool checkIfLabyrinth() {
         std::string_view levelName = m_level->m_levelName;
-        return levelName.starts_with(LEVEL_NAME)
+        return levelName.compare(0, 9, LEVEL_NAME, 0, 9) == 0
                 && m_level->m_creatorName == LEVEL_CREATOR
                 && Mod::get()->hasSavedValue("souls");
     }
@@ -95,29 +101,29 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
         auto userAccountID = GJAccountManager::sharedState()->m_accountID;
 
-		// Checking for if the user is a playtester
-		if (PLAYTESTER_IDS.contains(userAccountID)) {
-			this->m_effectManager->updateCountForItem(432, 1);
-			this->updateCounters(432, 1);
-		}
+        // Checking for if the user is a playtester
+        if (PLAYTESTER_IDS.contains(userAccountID)) {
+            m_effectManager->updateCountForItem(432, 1);
+            this->updateCounters(432, 1);
+        }
 
-		// Checking for if the user is a contributor
-		if (CONTRIBUTOR_IDS.contains(userAccountID)) {
-			this->m_effectManager->updateCountForItem(433, 1);
-			this->updateCounters(433, 1);
-		}
+        // Checking for if the user is a contributor
+        if (CONTRIBUTOR_IDS.contains(userAccountID)) {
+            m_effectManager->updateCountForItem(433, 1);
+            this->updateCounters(433, 1);
+        }
 
-		// Checking for if the user is a contest winner
-		if (CONTEST_IDS.contains(userAccountID)) {
-			this->m_effectManager->updateCountForItem(434, 1);
-			this->updateCounters(434, 1);
-		}
+        // Checking for if the user is a contest winner
+        if (CONTEST_IDS.contains(userAccountID)) {
+            m_effectManager->updateCountForItem(434, 1);
+            this->updateCounters(434, 1);
+        }
 
-		// Checking for if the user is a chatter
-		if (CHATTER_IDS.contains(userAccountID)) {
-			this->m_effectManager->updateCountForItem(435, 1);
-			this->updateCounters(435, 1);
-		}
+        // Checking for if the user is a chatter
+        if (CHATTER_IDS.contains(userAccountID)) {
+            m_effectManager->updateCountForItem(435, 1);
+            this->updateCounters(435, 1);
+        }
     }
 
     void saveState() {
@@ -147,14 +153,16 @@ class $modify(MyPlayerLayer, PlayLayer) {
             this->updateCounters(233, 1);
 
             // Loading saved items
-            for (auto [name, id] : ITEM_MAPPINGS) {
-                m_effectManager->updateCountForItem(id, Mod::get()->getSavedValue(name, 0));
-                this->updateCounters(id, Mod::get()->getSavedValue(name, 0));
+            for (auto [name, id, defaultValue] : ITEM_MAPPINGS) {
+                auto value = Mod::get()->getSavedValue(name, defaultValue);
+                m_effectManager->updateCountForItem(id, value);
+                this->updateCounters(id, value);
             }
 
             for (int i = 0; i < ACHIEVEMENTS.size(); i++) {
-                m_effectManager->updateCountForItem(i + 1000, Mod::get()->getSavedValue(ACHIEVEMENTS[i], 0));
-                this->updateCounters(i+1000, Mod::get()->getSavedValue(ACHIEVEMENTS[i], 0));
+                auto value = Mod::get()->getSavedValue(ACHIEVEMENTS[i], 0);
+                m_effectManager->updateCountForItem(i + 1000, value);
+                this->updateCounters(i+1000, value);
             }
 
             this->specialPrivs();
