@@ -15,5 +15,6 @@ Just download and enable the mod, it will activate when you enter the level :)
 - Stat viewer
 
 # Credits
+- **[Prevter](user:7696536)**: Optimizations
 - **[iAndy_HD3](user:1688850)**: Coding help
 - **[GDTicLos](user:13935562)**: Labyrinth+ logo art
