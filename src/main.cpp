@@ -12,20 +12,20 @@ constexpr auto ACHIEVEMENTS = std::to_array<std::string_view>({
     "adventurer1", "adventurer2", "adventurer3", "adventurer4", "how to adventure", "speed of light", "blank", "blank", "blank"
 });
 
-constexpr std::unordered_set PLAYTESTER_IDS = {
+static const std::unordered_set<int> PLAYTESTER_IDS = {
     6061424, 4712395, 11826816, 63047, 106255, 4569963, 1788352, 1292925, 2156992, 1327813, 8328899, 2358957, 201646, 5375030, 104497,
     42681, 1696128, 15875490, 1521580, 7060819, 3578384, 13842489, 2671693, 1249399, 8002621, 21476843, 4103842, 6192122, 10905351,
     16750360, 13935562, 19542150, 18298730, 20063614, 25373869, 11167197, 3822295, 7882688, 571210, 7346996, 9471312, 20550026, 8921237, 24813127
 };
 
-constexpr std::unordered_set CONTRIBUTOR_IDS = {
+static const std::unordered_set<int> CONTRIBUTOR_IDS = {
     6061424, 7882688, 63047, 34602, 13903094, 11167197, 11826816, 3166813, 16610096, 8851103, 20371964, 1696128, 6225348, 7709071,
     8328899, 20550026, 13842489, 2671693, 16494507, 8002621, 14277495, 54944, 19864272, 21113321, 21476843, 19691441, 7060384,
     20581650, 21679473, 5454096, 7346996
 };
 
-constexpr std::unordered_set CONTEST_IDS = { 6061424 };
-constexpr std::unordered_set CHATTER_IDS = { 6061424, 25373869, 19542150, 28154640, 21476843, 31384585, 2671693, 13842489, 27995263, 63047, 16546314, 4422848 };
+static const std::unordered_set<int> CONTEST_IDS = { 6061424 };
+static const std::unordered_set<int> CHATTER_IDS = { 6061424, 25373869, 19542150, 28154640, 21476843, 31384585, 2671693, 13842489, 27995263, 63047, 16546314, 4422848 };
 
 constexpr auto ITEM_MAPPINGS = std::to_array<std::pair<std::string_view, int>>({
     {"souls", 64},             // Souls
