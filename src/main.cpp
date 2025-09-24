@@ -127,7 +127,7 @@ class $modify(MyPlayerLayer, PlayLayer) {
     }
 
     void saveState() {
-        for (auto [name, id] : ITEM_MAPPINGS) {
+        for (auto [name, id, defaultValue] : ITEM_MAPPINGS) {
             Mod::get()->setSavedValue<int>(name, m_effectManager->countForItem(id));
         }
 
