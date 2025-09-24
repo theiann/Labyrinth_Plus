@@ -83,7 +83,7 @@ constexpr auto ITEM_MAPPINGS = std::to_array<std::pair<std::string_view, int>>({
 class $modify(MyPlayerLayer, PlayLayer) {
     bool checkIfLabyrinth() {
         std::string_view levelName = m_level->m_levelName;
-        return geode::utils::string::startsWith(levelName, LEVEL_NAME)
+        return levelName.starts_with(LEVEL_NAME)
                 && m_level->m_creatorName == LEVEL_CREATOR
                 && Mod::get()->hasSavedValue("souls");
     }
@@ -97,26 +97,26 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 		// Checking for if the user is a playtester
 		if (PLAYTESTER_IDS.contains(userAccountID)) {
-			pl->m_effectManager->updateCountForItem(432, 1);
-			pl->updateCounters(432, 1);
+			this->m_effectManager->updateCountForItem(432, 1);
+			this->updateCounters(432, 1);
 		}
 
 		// Checking for if the user is a contributor
 		if (CONTRIBUTOR_IDS.contains(userAccountID)) {
-			pl->m_effectManager->updateCountForItem(433, 1);
-			pl->updateCounters(433, 1);
+			this->m_effectManager->updateCountForItem(433, 1);
+			this->updateCounters(433, 1);
 		}
 
 		// Checking for if the user is a contest winner
 		if (CONTEST_IDS.contains(userAccountID)) {
-			pl->m_effectManager->updateCountForItem(434, 1);
-			pl->updateCounters(434, 1);
+			this->m_effectManager->updateCountForItem(434, 1);
+			this->updateCounters(434, 1);
 		}
 
 		// Checking for if the user is a chatter
 		if (CHATTER_IDS.contains(userAccountID)) {
-			pl->m_effectManager->updateCountForItem(435, 1);
-			pl->updateCounters(435, 1);
+			this->m_effectManager->updateCountForItem(435, 1);
+			this->updateCounters(435, 1);
 		}
     }
 
