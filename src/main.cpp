@@ -68,7 +68,7 @@ void specialPrivs(PlayLayer* pl) {
 
 	// Checking for if the user is a contest winner
 	for (int i = 0; i < (sizeof(contestIDs) / sizeof(contestIDs[0])); i++) {
-		if (contributorIDs[i] == userAccountID) {
+		if (contestIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(434, 1);
 			pl->updateCounters(434, 1);
 		}
@@ -76,7 +76,7 @@ void specialPrivs(PlayLayer* pl) {
 
 	// Checking for if the user is a chatter
 	for (int i = 0; i < (sizeof(chatterIDs) / sizeof(chatterIDs[0])); i++) {
-		if (contributorIDs[i] == userAccountID) {
+		if (chatterIDs[i] == userAccountID) {
 			pl->m_effectManager->updateCountForItem(435, 1);
 			pl->updateCounters(435, 1);
 		}
