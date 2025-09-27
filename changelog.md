@@ -1,3 +1,7 @@
+# 1.0.4
+- fixed a bug stopping certain people from appearing on the list of account ids
+- bug so minor that it only affected exactly 9 people in the entire world
+
 # 1.0.3
 - changed the version number lol
 

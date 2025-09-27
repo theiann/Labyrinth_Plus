@@ -89,9 +89,14 @@ constexpr auto ITEM_MAPPINGS = std::to_array<ItemMapping>({
 class $modify(MyPlayerLayer, PlayLayer) {
     bool checkIfLabyrinth() {
         std::string_view levelName = m_level->m_levelName;
-        return levelName.compare(0, 9, LEVEL_NAME, 0, 9) == 0
-                && m_level->m_creatorName == LEVEL_CREATOR
-                && Mod::get()->hasSavedValue("souls");
+        return levelName.starts_with(LEVEL_NAME)
+               && m_level->m_creatorName == LEVEL_CREATOR
+               && Mod::get()->hasSavedValue("souls");
+    }
+
+    void setCounter(int id, int value) {
+        m_effectManager->updateCountForItem(id, value);
+        this->updateCounters(id, value);
     }
 
     void specialPrivs() {
@@ -103,26 +108,22 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
         // Checking for if the user is a playtester
         if (PLAYTESTER_IDS.contains(userAccountID)) {
-            m_effectManager->updateCountForItem(432, 1);
-            this->updateCounters(432, 1);
+            this->setCounter(432, 1);
         }
 
         // Checking for if the user is a contributor
         if (CONTRIBUTOR_IDS.contains(userAccountID)) {
-            m_effectManager->updateCountForItem(433, 1);
-            this->updateCounters(433, 1);
+            this->setCounter(433, 1);
         }
 
         // Checking for if the user is a contest winner
         if (CONTEST_IDS.contains(userAccountID)) {
-            m_effectManager->updateCountForItem(434, 1);
-            this->updateCounters(434, 1);
+            this->setCounter(434, 1);
         }
 
         // Checking for if the user is a chatter
         if (CHATTER_IDS.contains(userAccountID)) {
-            m_effectManager->updateCountForItem(435, 1);
-            this->updateCounters(435, 1);
+            this->setCounter(435, 1);
         }
     }
 
@@ -144,25 +145,19 @@ class $modify(MyPlayerLayer, PlayLayer) {
             auto localTime = fmt::localtime(time(nullptr));
             int currentHour = localTime.tm_hour;
             if (currentHour >= 19 || currentHour <= 6){
-                m_effectManager->updateCountForItem(431, 1);
-                this->updateCounters(431, 1);
+                this->setCounter(431, 1);
             }
 
             // User has Labyrinth+ enabled
-            m_effectManager->updateCountForItem(233, 1);
-            this->updateCounters(233, 1);
+            this->setCounter(233, 1);
 
             // Loading saved items
             for (auto [name, id, defaultValue] : ITEM_MAPPINGS) {
-                auto value = Mod::get()->getSavedValue(name, defaultValue);
-                m_effectManager->updateCountForItem(id, value);
-                this->updateCounters(id, value);
+                this->setCounter(id, Mod::get()->getSavedValue(name, defaultValue));
             }
 
             for (int i = 0; i < ACHIEVEMENTS.size(); i++) {
-                auto value = Mod::get()->getSavedValue(ACHIEVEMENTS[i], 0);
-                m_effectManager->updateCountForItem(i + 1000, value);
-                this->updateCounters(i+1000, value);
+                this->setCounter(i + 1000, Mod::get()->getSavedValue(ACHIEVEMENTS[i], 0));
             }
 
             this->specialPrivs();
