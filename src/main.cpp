@@ -7,7 +7,7 @@ constexpr std::string_view LEVEL_NAME = "Labyrinth";
 
 constexpr auto ACHIEVEMENTS = std::to_array<std::string_view>({
     "beginnings", "big spender", "quick death", "cursed", "thievery", "upgrade", "min max", "ispy", "boom", "invigorated", "flying", "spicy",
-    "freezing", "zap", "shutdown", "mystery", "prepared", "shortcut", "sneaky deals", "secret box", "game time", "casino blitz", "collector",
+    "freezing", "zap", "shutdown", "mystery", "prepared", "shortcutachievement", "sneaky deals", "secret box", "game time", "casino blitz", "collector",
     "speedrunner1", "speedrunner2", "speedrunner3", "speedrunner4", "it lives", "it rests", "sneaky sneaky", "droppy", "good ending", "escapee",
     "adventurer1", "adventurer2", "adventurer3", "adventurer4", "how to adventure", "speed of light", "blank", "blank", "blank"
 });
