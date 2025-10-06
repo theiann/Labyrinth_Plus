@@ -490,9 +490,13 @@ class $modify(RandTriggerGameObject)
 	virtual void triggerObject(GJBaseGameLayer * a, int b, gd::vector<int> const* c) {
 		PlayLayer* pl = PlayLayer::get();
 		if ((pl != nullptr) && (checkIfLabyrinth(pl) == 1) && (pl->m_effectManager->countForItem(2009) == 1)) {
-			GameToolbox::fast_srand(pl->m_effectManager->countForItem(2011));
+			uint64_t seed = pl->m_effectManager->countForItem(2011);
+			uint64_t temp = seed * 3;
+			seed = seed * 10000000;
+			seed = seed + temp;
+			GameToolbox::fast_srand(seed);
 			RandTriggerGameObject::triggerObject(a, b, c);
-			GameToolbox::fast_srand(pl->m_effectManager->countForItem(2011));
+			GameToolbox::fast_srand(seed);
 		}
 		else {
 			RandTriggerGameObject::triggerObject(a, b, c);
