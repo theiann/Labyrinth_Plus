@@ -7,6 +7,8 @@
 #include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/cocos/base_nodes/CCNode.h>
 #include <Geode/binding/GJBaseGameLayer.hpp>
+#include <Geode/modify/RandTriggerGameObject.hpp>
+#include <Geode/binding/GameToolbox.hpp>
 #include <Geode/loader/Mod.hpp>
 #include <chrono>
 
@@ -36,7 +38,7 @@ int contributorIDs[] = { 6061424 , 7882688 , 63047 , 34602 , 13903094 , 11167197
 
 int contestIDs[] = { 6061424 };
 
-int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384585 , 2671693 , 13842489 , 27995263 , 63047 , 16546314 , 4422848};
+int chatterIDs[] = { 6061424 , 25373869 , 19542150 , 28154640 , 21476843 , 31384585 , 2671693 , 13842489 , 27995263 , 63047 , 16546314 , 4422848, 8002621, 25037725 };
 
 
 int checkIfLabyrinth(PlayLayer* pl) {
@@ -479,6 +481,21 @@ class $modify(MyPlayerLayer, PlayLayer) {
 		if (checkIfLabyrinth(pl) == 1) {
 			saveState(pl);
 			specialPrivs(pl);
+		}
+	}
+};
+
+class $modify(RandTriggerGameObject)
+{
+	virtual void triggerObject(GJBaseGameLayer * a, int b, gd::vector<int> const* c) {
+		PlayLayer* pl = PlayLayer::get();
+		if ((pl != nullptr) && (checkIfLabyrinth(pl) == 1) && (pl->m_effectManager->countForItem(2009) == 1)) {
+			GameToolbox::fast_srand(pl->m_effectManager->countForItem(2011));
+			RandTriggerGameObject::triggerObject(a, b, c);
+			GameToolbox::fast_srand(pl->m_effectManager->countForItem(2011));
+		}
+		else {
+			RandTriggerGameObject::triggerObject(a, b, c);
 		}
 	}
 };
