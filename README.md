@@ -7,4 +7,4 @@ This mod only does anything in the level "Labyrinth" uploaded by tricipital, whi
 
 <img src="logo.png" width="150" alt="Labyrinth+ logo" />
 
-I'm aware this code looks repetitive and I would refactor it but since I'm not aware of any actual unit testing tools for Geode, I can't easily test to ensure the refactored code works as intended.
+I'm aware this code looks repetitive, and I would like to refactor it, but since I'm not aware of any actual unit testing tools for Geode I can't easily test to ensure the refactored code works as intended.
