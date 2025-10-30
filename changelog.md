@@ -1,3 +1,6 @@
+# 1.1.1
+- Added new contest winners to list of account ids.
+
 # 1.1.0
 - Added support for seeded runs, coming in an update to the level.
 
