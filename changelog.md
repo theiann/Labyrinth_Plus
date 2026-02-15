@@ -1,3 +1,6 @@
+# 1.1.2
+- Mod updated for Geometry Dash 2.2081
+
 # 1.1.1
 - Added new contest winners to list of account ids.
 

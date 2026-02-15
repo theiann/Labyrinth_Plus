@@ -11,8 +11,9 @@ Allows the level to interface with the game for the purpose of user authentifica
 Just download and enable the mod, it will activate when you enter the level :)
 
 # Planned Features
-- Seeded runs
 - Stat viewer
+- Daily runs
+- Online leaderboard
 
 # Credits
 - **[iAndy_HD3](user:1688850)**: Coding help

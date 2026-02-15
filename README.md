@@ -1,5 +1,5 @@
 # Labyrinth+
-Quality of life mod for the level Labyrinth which saves permanent progress across sessions, and adds bonus content.
+Quality of life mod for the level Labyrinth which saves permanent progress across sessions, and adds seeded runs + bonus content!
 
 Progress is saved between each attempt and also on level exit.
 

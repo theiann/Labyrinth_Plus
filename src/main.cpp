@@ -250,8 +250,8 @@ class $modify(MyPlayerLayer, PlayLayer) {
 
 			// Checking for IRL day or night
 			auto currentTime = std::time(NULL);
-			auto timeSheet = fmt::localtime(currentTime);
-			if ((timeSheet.tm_hour >= 19) || (timeSheet.tm_hour <= 6)){
+			auto timeSheet = std::localtime(&currentTime);
+			if ((timeSheet->tm_hour >= 19) || (timeSheet->tm_hour <= 6)){
 				pl->m_effectManager->updateCountForItem(431, 1);
 				pl->updateCounters(431, 1);
 			}
