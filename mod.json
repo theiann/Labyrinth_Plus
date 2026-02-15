@@ -4,11 +4,11 @@
 		"win": "2.2081",
 		"android": "2.2081",
 		"mac": "2.2081",
-		"ios": "2.20741"
+		"ios": "2.2081"
 	},
 	"id": "tricipital.labyrinth_plus",
 	"name": "Labyrinth+",
-	"version": "v1.1.2",
+	"version": "v1.1.3",
 	"developer": "tricipital",
 	"description": "Quality of life mod for the level Labyrinth.",
 	"repository": "https://github.com/theiann/Labyrinth_Plus",

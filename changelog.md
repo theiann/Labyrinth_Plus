@@ -1,4 +1,4 @@
-# 1.1.2
+# 1.1.3
 - Mod updated for Geometry Dash 2.2081
 
 # 1.1.1
