@@ -1,5 +1,5 @@
 {
-	"geode": "5.0.0-beta.1",
+	"geode": "5.0.1",
 	"gd": {
 		"win": "2.2081",
 		"android": "2.2081",
@@ -8,7 +8,7 @@
 	},
 	"id": "tricipital.labyrinth_plus",
 	"name": "Labyrinth+",
-	"version": "v1.1.3",
+	"version": "v1.1.4-beta",
 	"developer": "tricipital",
 	"description": "Quality of life mod for the level Labyrinth.",
 	"repository": "https://github.com/theiann/Labyrinth_Plus",
