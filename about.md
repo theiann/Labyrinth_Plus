@@ -4,6 +4,7 @@ A mod that adds many quality of life features for the level "Labyrinth" by trici
 
 Progress in the level is saved across sessions automatically and loaded upon entrance.
 
+This mod also makes the seeded runs feature possible within Labyrinth! (must be unlocked first)
 
 Allows the level to interface with the game for the purpose of user authentification and date/time specific events.
 

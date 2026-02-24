@@ -1,3 +1,6 @@
+# 1.1.4
+- Ported to iOS! Please report any issues you may have with the iOS version to me as I cannot test them easily myself. Thanks
+
 # 1.1.3
 - Mod updated for Geometry Dash 2.2081
 
